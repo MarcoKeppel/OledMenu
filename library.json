@@ -1,0 +1,30 @@
+{
+    "name": "OledMenu",
+    "version": "0.1.0",
+    "description": "A highly parametric and customizable system for menu interfaces on microcontroller displays.",
+    "keywords": "oled, display, menu",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/MarcoKeppel/OledMenu.git"
+    },
+    "authors":
+    [
+        {
+            "name": "Marco Keppel",
+            "email": "contact@marcokeppel.dev",
+            "url": "https://marcokeppel.dev"
+        }
+    ],
+    "license": "MIT",
+    "homepage": "",
+    "dependencies": {
+        "adafruit/Adafruit SSD1306": "^2.5.3",
+        "adafruit/Adafruit BusIO": "^1.11.5"
+    },
+    "headers": [
+        "OledMenu.h"
+    ],
+    "frameworks": "*",
+    "platforms": "*"
+}
