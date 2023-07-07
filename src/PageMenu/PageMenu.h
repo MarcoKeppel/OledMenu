@@ -16,6 +16,9 @@ class PageMenu : public Menu {
         void addPage(Page *p);
         void changePage();
 
+        void drawPage();
+        void clickPage(int btnMillis);
+
         int nPage;
         int currentPage;
 

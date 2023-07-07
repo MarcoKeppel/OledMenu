@@ -28,3 +28,13 @@ void PageMenu::changePage() {
 
     oledMenu->handleMenu();
 }
+
+void PageMenu::drawPage() {
+
+    this->page[currentPage]->drawFunction(this->page[currentPage]);
+}
+
+void PageMenu::clickPage(int btnMillis) {
+
+    this->page[currentPage]->handleClick(this->page[currentPage], btnMillis);
+}
