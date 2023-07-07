@@ -11,7 +11,7 @@ class ListMenu : public Menu {
     public:
         
         ListMenu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m));
-        ListMenu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m), void(*handleClick)(Menu *m, int btnMillis));
+        ListMenu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m) = &ListMenu::defaultDrawFunction, void(*handleClick)(Menu *m, int btnMillis) = &ListMenu::defaultHandleClick);
 
         void addOption(char *desc, int *var);
 
@@ -30,6 +30,13 @@ class ListMenu : public Menu {
         // TODO: maybe they should not be public
         char *optionDesc[MAX_N_OPTIONS];
         int  *optionVar [MAX_N_OPTIONS];
+
+    private:
+
+        // Default functions
+        static void defaultTopBar(ListMenu *m);
+        static void defaultDrawFunction(Menu *m);
+        static void defaultHandleClick(Menu *m, int btnMillis);
 };
 
 #endif

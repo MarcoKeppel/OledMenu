@@ -11,7 +11,7 @@ class PageMenu : public Menu {
     public:
         
         PageMenu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m));
-        PageMenu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m), void(*handleClick)(Menu *m, int btnMillis));
+        PageMenu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m) = &PageMenu::defaultDrawFunction, void(*handleClick)(Menu *m, int btnMillis) = &PageMenu::defaultHandleClick);
 
         void addPage(Page *p);
         void changePage();
@@ -23,6 +23,13 @@ class PageMenu : public Menu {
         int currentPage;
 
         Page *page[MAX_N_PAGES];
+
+    private:
+
+        // Default functions
+        static void defaultTopBar(PageMenu *m);
+        static void defaultDrawFunction(Menu *m);
+        static void defaultHandleClick(Menu *m, int btnMillis);
 };
 
 #endif
