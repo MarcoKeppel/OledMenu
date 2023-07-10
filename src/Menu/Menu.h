@@ -17,6 +17,13 @@ class Menu {
 
         Menu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m));
         Menu(OledMenu *oledMenu, int id, char *name, int nPage, void(*drawFunction)(Menu *m), void(*handleClick)(Menu *m, int btnMillis));
+
+    protected:
+
+        // Default functions
+        static void defaultTopBar(Menu *m);
+        static void defaultDrawFunction(Menu *m);
+        static void defaultHandleClick(Menu *m, int btnMillis);
 };
 
 #endif
