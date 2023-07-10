@@ -24,7 +24,7 @@ class PageMenu : public Menu {
 
         Page *page[MAX_N_PAGES];
 
-    private:
+    protected:
 
         // Default functions
         static void defaultTopBar(PageMenu *m);

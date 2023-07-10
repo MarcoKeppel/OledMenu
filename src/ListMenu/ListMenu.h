@@ -31,7 +31,7 @@ class ListMenu : public Menu {
         char *optionDesc[MAX_N_OPTIONS];
         int  *optionVar [MAX_N_OPTIONS];
 
-    private:
+    protected:
 
         // Default functions
         static void defaultTopBar(ListMenu *m);
