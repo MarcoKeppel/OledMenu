@@ -17,7 +17,7 @@ void AlertWindow::defaultTopBar(AlertWindow *w) {
 
     Adafruit_SSD1306* display = w->oledMenu->display;
 
-    w->oledMenu->display->print(w->name);
+    display->print(w->name);
     // int rad = 3;
     // int margin = 64;
     // int spacing = 12;
@@ -31,8 +31,9 @@ void AlertWindow::defaultTopBar(AlertWindow *w) {
     //     }
     // }
   
-    w->oledMenu->display->drawFastHLine(0, 9, 128, 1);
-    w->oledMenu->display->setCursor(0, 12);
+    // TODO better expressions
+    display->drawFastHLine((128 - (WINDOW_WIDTH)) / 2, ((64 - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 9, WINDOW_WIDTH, 1);
+    display->setCursor((128 - (WINDOW_WIDTH)) / 2 + /*padding*/ 1, ((64 - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 12);
 }
 
 void AlertWindow::defaultDrawFunction(AlertWindow *w) {
@@ -43,8 +44,9 @@ void AlertWindow::defaultDrawFunction(AlertWindow *w) {
 
     // TODO draw window (make this a separate function?)
     // TODO remove hardcoded display dimensions
-    display->fillRect((128 - (2*WINDOW_MARGIN + WINDOW_WIDTH + /*border*/ 2)) / 2, (64 - (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*2*border*/ 2*1)) / 2, (2*WINDOW_MARGIN + WINDOW_WIDTH + /*2*border*/ 2*1), (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*border*/ 2), 0);
-    display->setCursor((128 - (WINDOW_WIDTH)) / 2, (64 - (WINDOW_HEIGHT)));
+    display->fillRect((128 - (2*WINDOW_MARGIN + WINDOW_WIDTH + /*2*border*/ 2*1)) / 2, (64 - (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*2*border*/ 2*1)) / 2, (2*WINDOW_MARGIN + WINDOW_WIDTH + /*2*border*/ 2*1), (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*border*/ 2), 0);
+    display->drawRect((128 - (WINDOW_WIDTH + /*2*border*/ 2*1)) / 2, (64 - (WINDOW_HEIGHT + /*2*border*/ 2*1)) / 2, WINDOW_WIDTH + 2, WINDOW_HEIGHT + 2, 1);
+    display->setCursor((128 - (WINDOW_WIDTH)) / 2 + /*padding*/ 1, (64 - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1);
     
     AlertWindow::defaultTopBar(w);
 

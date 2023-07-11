@@ -4,7 +4,7 @@
 // TODO parameters instead of #define
 #define WINDOW_WIDTH  96
 #define WINDOW_HEIGHT 48
-#define WINDOW_MARGIN 1
+#define WINDOW_MARGIN 3
 
 class OledMenu;
 
