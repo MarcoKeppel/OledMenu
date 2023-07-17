@@ -17,6 +17,9 @@ void AlertWindow::defaultTopBar(AlertWindow *w) {
 
     Adafruit_SSD1306* display = w->oledMenu->display;
 
+    int dw = display->width();
+    int dh = display->height();
+
     display->print(w->name);
     // int rad = 3;
     // int margin = 64;
@@ -32,8 +35,8 @@ void AlertWindow::defaultTopBar(AlertWindow *w) {
     // }
   
     // TODO better expressions
-    display->drawFastHLine((128 - (WINDOW_WIDTH)) / 2, ((64 - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 9, WINDOW_WIDTH, 1);
-    display->setCursor((128 - (WINDOW_WIDTH)) / 2 + /*padding*/ 1, ((64 - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 12);
+    display->drawFastHLine((dw - (WINDOW_WIDTH)) / 2, ((dh - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 9, WINDOW_WIDTH, 1);
+    display->setCursor((dw - (WINDOW_WIDTH)) / 2 + /*padding*/ 1, ((dh - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 12);
 }
 
 void AlertWindow::defaultDrawFunction(AlertWindow *w) {
@@ -42,11 +45,14 @@ void AlertWindow::defaultDrawFunction(AlertWindow *w) {
 
     Adafruit_SSD1306* display = w->oledMenu->display;
 
+    int dw = display->width();
+    int dh = display->height();
+
     // TODO draw window (make this a separate function?)
     // TODO remove hardcoded display dimensions
-    display->fillRect((128 - (2*WINDOW_MARGIN + WINDOW_WIDTH + /*2*border*/ 2*1)) / 2, (64 - (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*2*border*/ 2*1)) / 2, (2*WINDOW_MARGIN + WINDOW_WIDTH + /*2*border*/ 2*1), (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*border*/ 2), 0);
-    display->drawRect((128 - (WINDOW_WIDTH + /*2*border*/ 2*1)) / 2, (64 - (WINDOW_HEIGHT + /*2*border*/ 2*1)) / 2, WINDOW_WIDTH + 2, WINDOW_HEIGHT + 2, 1);
-    display->setCursor((128 - (WINDOW_WIDTH)) / 2 + /*padding*/ 1, (64 - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1);
+    display->fillRect((dw - (2*WINDOW_MARGIN + WINDOW_WIDTH + /*2*border*/ 2*1)) / 2, (dh - (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*2*border*/ 2*1)) / 2, (2*WINDOW_MARGIN + WINDOW_WIDTH + /*2*border*/ 2*1), (2*WINDOW_MARGIN + WINDOW_HEIGHT + /*border*/ 2), 0);
+    display->drawRect((dw - (WINDOW_WIDTH + /*2*border*/ 2*1)) / 2, (dh - (WINDOW_HEIGHT + /*2*border*/ 2*1)) / 2, WINDOW_WIDTH + 2, WINDOW_HEIGHT + 2, 1);
+    display->setCursor((dw - (WINDOW_WIDTH)) / 2 + /*padding*/ 1, (dh - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1);
     
     AlertWindow::defaultTopBar(w);
 
