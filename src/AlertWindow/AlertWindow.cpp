@@ -1,47 +1,31 @@
 #include "AlertWindow.h"
 #include "../OledMenu/OledMenu.h"
 
-AlertWindow::AlertWindow(OledMenu *oledMenu, int id, char* name, char* message, void(*drawFunction)(AlertWindow *w), void(*handleClick)(AlertWindow *w, int btnMillis)) {
-
-    this->oledMenu = oledMenu;
-    this->id = id;
-    this->name = name;
-    this->message = message;
-    this->drawFunction = drawFunction;
-    this->handleClick = handleClick;
+AlertWindow::AlertWindow(OledMenu *oledMenu, int id, char* name, char* message, void(*drawFunction)(Window *w), void(*handleClick)(Window *w, int btnMillis))
+    : Window(oledMenu, id, name, message, drawFunction, handleClick) {
 }
 
 // Default functions
 
-void AlertWindow::defaultTopBar(AlertWindow *w) {
+void AlertWindow::defaultTopBar(Window *w) {
 
-    Adafruit_SSD1306* display = w->oledMenu->display;
+    AlertWindow *_w = (AlertWindow*)w;
+
+    Adafruit_SSD1306* display = _w->oledMenu->display;
 
     int dw = display->width();
     int dh = display->height();
 
     display->print(w->name);
-    // int rad = 3;
-    // int margin = 64;
-    // int spacing = 12;
-    
-    // for (int i = 0; i < m->nPage; i++) {
-    //     if (i == m->currentPage) {
-    //         display->fillCircle(margin + i*spacing, 3, rad, 1); 
-    //     }
-    //     else {
-    //         display->drawCircle(margin + i*spacing, 3, rad, 1); 
-    //     }
-    // }
   
     // TODO better expressions
     display->drawFastHLine((dw - (WINDOW_WIDTH)) / 2, ((dh - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 9, WINDOW_WIDTH, 1);
     display->setCursor((dw - (WINDOW_WIDTH)) / 2 + /*padding*/ 1, ((dh - (WINDOW_HEIGHT)) / 2 + /*padding*/ 1) + 12);
 }
 
-void AlertWindow::defaultDrawFunction(AlertWindow *w) {
+void AlertWindow::defaultDrawFunction(Window *w) {
 
-    // ListMenu *_w = (ListMenu*)m;
+    AlertWindow *_w = (AlertWindow*)w;
 
     Adafruit_SSD1306* display = w->oledMenu->display;
 
@@ -56,18 +40,18 @@ void AlertWindow::defaultDrawFunction(AlertWindow *w) {
     
     AlertWindow::defaultTopBar(w);
 
-    display->print(w->message);
+    display->print(_w->message);
 }
 
-void AlertWindow::defaultHandleClick(AlertWindow *w, int btnMillis) {
+void AlertWindow::defaultHandleClick(Window *w, int btnMillis) {
 
-    // ListMenu *_w = (ListMenu*)m;
+    AlertWindow *_w = (AlertWindow*)w;
 
     // TODO macro
     // if (btnMillis > BTN_SHORT_PRESS) {
     if (btnMillis > 100) {
         // TODO dismiss window
-        w->oledMenu->dismissWindow();
+        _w->oledMenu->dismissWindow();
     }
 }
 

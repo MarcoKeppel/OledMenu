@@ -32,7 +32,7 @@ class OledMenu {
         void handleClick(int btnMillis);
 
         // TODO Window parent class
-        AlertWindow *windowStack[WINDOW_STACK_SIZE];
+        Window *windowStack[WINDOW_STACK_SIZE];
         int windowStackPtr;
 
         void displayWindow(AlertWindow *w);
